@@ -14,6 +14,7 @@ public class morpion {
     
     //fonction principale qui exécute tout le programme
     public static void main(String[] arguments) {
+        Thread.sleep(1000);
         System.out.println("Prêt·e pour une partie de morpion ?");
         afficher();
         for(int i=0; i<9; i++) {
@@ -36,37 +37,54 @@ public class morpion {
 
 
     //fonction qui demande de jouer en fonction du numéro du joueur
-    public static void jouer(int numJoueur) {
+    public static void jouer(int joueur) {
         int caseChoice;
         //affectation du signe selon le joueur
         char sign;
-        if(numJoueur==1) {
+        if(joueur==1) {
             sign='X';
         }
         else {
             sign='O';
         }
 
-        if(numJoueur==1){
+        //utilisation de l'outil scanner
+        //déclaration d'une variable de type objet qui crée un new scanner avec un paramètre d'entrée
+        Scanner scannerMode = new Scanner(System.in);
+        System.out.println("Veux-tu jouer en mode : joueur face à joueur (1), joueur face au redoutable ordi (2) ou ordi face à ordi (3)?\n");
+        int modeChoice = scannerMode.nextInt();
+        if(modeChoice==1){
             //utilisation de l'outil scanner
             //déclaration d'une variable de type objet qui crée un new scanner avec un paramètre d'entrée
             Scanner scannerMorpion = new Scanner(System.in);
 
-            System.out.println("Joueur" + numJoueur);
+            System.out.println("A toi de jouer");
             //demande de saisie d'info de type entier
             caseChoice = scannerMorpion.nextInt();
             //scannerMorpion.nextLine();
-        }else{
+        }else if(modeChoice==2) {
+            if(joueur == 1) {
+                //utilisation de l'outil scanner
+                //déclaration d'une variable de type objet qui crée un new scanner avec un paramètre d'entrée
+                Scanner scannerMorpion = new Scanner(System.in);
+
+                System.out.println("Joueur" + joueur);
+                //demande de saisie d'info de type entier
+                caseChoice = scannerMorpion.nextInt();
+                //scannerMorpion.nextLine();
+            } else {
+                caseChoice = (int) (Math.random() * 9 + 1);
+                System.out.println("L'ordi a choisi " + caseChoice);
+            }
+        }else if(modeChoice==3){
             caseChoice = (int)(Math.random() * 9+1);
             System.out.println("L'ordi a choisi " + caseChoice);
         }
 
-
-
         //message d'erreur si chiffre choisi n'appartient pas à l'intervalle [1;9]
-        if(caseChoice<1 || caseChoice>9) {
+       if(caseChoice<1 || caseChoice>9) {
         System.out.println("Rejoues avec un chiffre compris entre 1 et 9.\n"); 
-        jouer(numJoueur);
+        jouer(joueur);
         }
 
         //affectation du signe selon le numéro de case choisi
@@ -82,113 +100,85 @@ public class morpion {
         }*/
         boolean erreur = false;
 
-        if(caseChoice==1)
-        {
-            if(c1!='X' && c1!='O')
-            {
+        if(caseChoice==1) {
+            if(c1!='X' && c1!='O') {
                 c1=sign;
-            }else
-            {
+            }else {
                 erreur = true;
             }
         }
 
-        if(caseChoice==2)
-        {
-            if(c2!='X' && c2!='O')
-            {
+        if(caseChoice==2) {
+            if(c2!='X' && c2!='O') {
                 c2=sign; 
-            }else
-            {
+            }else {
                 erreur = true;
             }
         }
 
-        if(caseChoice==3)
-        {
-            if(c3!='X' && c3!='O')
-            {
+        if(caseChoice==3) {
+            if(c3!='X' && c3!='O') {
                 c3=sign;
-            }else
-            {
+            }else {
                 erreur = true;
             }
         }
 
-        if(caseChoice==4)
-        {
-            if(b1!='X' && b1!='O')
-            {
+        if(caseChoice==4) {
+            if(b1!='X' && b1!='O') {
                 b1=sign; 
-            }else
-            {
+            }else {
                 erreur = true;
             }
         }
 
-        if(caseChoice==5)
-        {
-            if(b2!='X' && b2!='O')
-            {
+        if(caseChoice==5) {
+            if(b2!='X' && b2!='O') {
                 b2=sign; 
-            }else
-            {
+            }else {
                 erreur = true;
             }
         }
 
-        if(caseChoice==6)
-        {
-            if(b3!='X' && b3!='O')
-            {
+        if(caseChoice==6) {
+            if(b3!='X' && b3!='O') {
                 b3=sign; 
-            }else
-            {
+            }else {
                 erreur = true;
             }
         }
 
-        if(caseChoice==7)
-        {
-            if(a1!='X' && a1!='O')
-            {
+        if(caseChoice==7) {
+            if(a1!='X' && a1!='O') {
                 a1=sign;
-            }else
-            {
+            }else {
                 erreur = true;
             }
         }
 
-        if(caseChoice==8)
-        {
-            if(a2!='X' && a2!='O')
-            {
+        if(caseChoice==8) {
+            if(a2!='X' && a2!='O') {
                 a2=sign; 
-            }else
-            {
+            }else {
                 erreur = true;
             }
         }
 
-        if(caseChoice==9)
-        {
-            if(a3!='X' && a3!='O')
-            {
+        if(caseChoice==9) {
+            if(a3!='X' && a3!='O') {
                 a3=sign;
-            }else
-            {
+            }else {
                 erreur = true;
             }
         }
 
         if(erreur == true){
             System.out.println("Case déjà jouée !\n");
-            jouer(numJoueur);
+            jouer(joueur);
         }
       
         // alternative avec switch :
-        /*switch(caseChoice)
-        {
+        /*switch(caseChoice){
             case 1:
                 if(c1!='X' && c1!='O'){
                     c1=sign;
