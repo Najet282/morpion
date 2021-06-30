@@ -15,8 +15,8 @@ public class morpion {
     //fonction principale qui exécute tout le programme
     public static void main(String[] arguments) {
         System.out.println("Prêt·e pour une partie de morpion ?");
+        afficher();
         for(int i=0; i<9; i++) {
-            afficher();
             jouer(1);
             afficher();
             victoire(1);
@@ -37,6 +37,7 @@ public class morpion {
 
     //fonction qui demande de jouer en fonction du numéro du joueur
     public static void jouer(int numJoueur) {
+        int caseChoice;
         //affectation du signe selon le joueur
         char sign;
         if(numJoueur==1) {
@@ -46,14 +47,21 @@ public class morpion {
             sign='O';
         }
 
-        //utilisation de l'outil scanner
-        //déclaration d'une variable de type objet qui crée un new scanner avec un paramètre d'entrée
-        Scanner scannerMorpion = new Scanner(System.in);
+        if(numJoueur==1){
+            //utilisation de l'outil scanner
+            //déclaration d'une variable de type objet qui crée un new scanner avec un paramètre d'entrée
+            Scanner scannerMorpion = new Scanner(System.in);
 
-        System.out.println("Joueur" + numJoueur);
-        //demande de saisie d'info de type entier
-        int caseChoice = scannerMorpion.nextInt();
-        //scannerMorpion.nextLine();
+            System.out.println("Joueur" + numJoueur);
+            //demande de saisie d'info de type entier
+            caseChoice = scannerMorpion.nextInt();
+            //scannerMorpion.nextLine();
+        }else{
+            caseChoice = (int)(Math.random() * 9+1);
+            System.out.println("L'ordi a choisi " + caseChoice);
+        }
+
+
 
         //message d'erreur si chiffre choisi n'appartient pas à l'intervalle [1;9]
         if(caseChoice<1 || caseChoice>9) {
@@ -72,6 +80,7 @@ public class morpion {
                 }
             }
         }*/
+        boolean erreur = false;
 
         if(caseChoice==1)
         {
@@ -80,8 +89,7 @@ public class morpion {
                 c1=sign;
             }else
             {
-                System.out.println("Case déjà jouée !\n");
-                jouer(numJoueur);
+                erreur = true;
             }
         }
 
@@ -92,8 +100,7 @@ public class morpion {
                 c2=sign; 
             }else
             {
-                System.out.println("Case déjà jouée !\n");
-                jouer(numJoueur); 
+                erreur = true;
             }
         }
 
@@ -104,8 +111,7 @@ public class morpion {
                 c3=sign;
             }else
             {
-                System.out.println("Case déjà jouée !\n");
-                jouer(numJoueur);
+                erreur = true;
             }
         }
 
@@ -116,8 +122,7 @@ public class morpion {
                 b1=sign; 
             }else
             {
-                System.out.println("Case déjà jouée !\n");
-                jouer(numJoueur);
+                erreur = true;
             }
         }
 
@@ -128,8 +133,7 @@ public class morpion {
                 b2=sign; 
             }else
             {
-                System.out.println("Case déjà jouée !\n");
-                jouer(numJoueur);
+                erreur = true;
             }
         }
 
@@ -140,8 +144,7 @@ public class morpion {
                 b3=sign; 
             }else
             {
-                System.out.println("Case déjà jouée !\n");
-                jouer(numJoueur);
+                erreur = true;
             }
         }
 
@@ -152,8 +155,7 @@ public class morpion {
                 a1=sign;
             }else
             {
-                System.out.println("Case déjà jouée !\n");
-                jouer(numJoueur);
+                erreur = true;
             }
         }
 
@@ -164,8 +166,7 @@ public class morpion {
                 a2=sign; 
             }else
             {
-                System.out.println("Case déjà jouée !\n");
-                jouer(numJoueur);
+                erreur = true;
             }
         }
 
@@ -176,41 +177,81 @@ public class morpion {
                 a3=sign;
             }else
             {
-                System.out.println("Case déjà jouée !\n");
-                jouer(numJoueur);
+                erreur = true;
             }
+        }
+
+        if(erreur == true){
+            System.out.println("Case déjà jouée !\n");
+            jouer(numJoueur);
         }
       
         // alternative avec switch :
         /*switch(caseChoice)
         {
             case 1:
-                c1=sign;
-            break;
+                if(c1!='X' && c1!='O'){
+                    c1=sign;
+                }else{
+                erreur = true;
+                }
+                break;
             case 2:
-                c2=sign;
-            break;
+                if(c2!='X' && c2!='O'){
+                    c2=sign;
+                }else{
+                    erreur = true;
+                }
+                break;
             case 3:
-                c3=sign;
-            break;
+                if(c3!='X' && c3!='O'){
+                    c3=sign;
+                }else{
+                    erreur = true;
+                }
+                break;
             case 4:
-                b1=sign;
-            break;
+                if(b1!='X' && b1!='O'){
+                    b1=sign;
+                }else{
+                    erreur = true;
+                }
+                break;
             case 5:
-                b2=sign;
-            break;
+                if(b2!='X' && b2!='O'){
+                    b2=sign;
+                }else{
+                    erreur = true;
+                }
+                break;
             case 6:
-                b3=sign;
-            break;
+                if(b3!='X' && b3!='O'){
+                    b3=sign;
+                }else{
+                    erreur = true;
+                }
+                break;
             case 7:
-                a1=sign;
-            break;
+                if(a1!='X' && a1!='O'){
+                    a1=sign;
+                }else{
+                    erreur = true;
+                }
+                break;
             case 8:
-                a2=sign;
-            break;
+                if(a2!='X' && a2!='O'){
+                    a2=sign;
+                }else{
+                    erreur = true;
+                }
+                break;
             case 9:
-                a3=sign;
-            break;
+                if(a3!='X' && a3!='O'){
+                    a3=sign;
+                }else{
+                    erreur = true;
+                }
+                break;
         }
         */
         //scannerMorpion.close(); // ne pas mettre de scanner.close à cause du statique
